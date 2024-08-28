@@ -17,3 +17,9 @@ mongoose
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
   });
+
+// Export the necessary variables or functions for unit-testing purposes
+module.exports = {
+  app,
+  mongoose
+};

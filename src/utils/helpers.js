@@ -1,37 +1,34 @@
-// This file contains helper functions that are used across various layers of the application
+const { generateRandomId, formatDate, calculateAverage, convertToUppercase } = require('./src/utils/helpers');
 
-// Function to generate a random ID
-function generateRandomId() {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let randomId = '';
-  for (let i = 0; i < 10; i++) {
-    const randomIndex = Math.floor(Math.random() * chars.length);
-    randomId += chars[randomIndex];
-  }
-  return randomId;
-}
+describe('Helper Functions', () => {
+  describe('generateRandomId', () => {
+    it('should generate a random ID with 10 characters', () => {
+      const randomId = generateRandomId();
+      expect(randomId).toHaveLength(10);
+    });
+  });
 
-// Function to format a date to a specific format
-function formatDate(date) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return date.toLocaleDateString('en-GB', options);
-}
+  describe('formatDate', () => {
+    it('should format a date to a specific format', () => {
+      const date = new Date('2022-01-01');
+      const formattedDate = formatDate(date);
+      expect(formattedDate).toBe('January 1, 2022');
+    });
+  });
 
-// Function to calculate the average of an array of numbers
-function calculateAverage(numbers) {
-  const total = numbers.reduce((sum, num) => sum + num, 0);
-  return total / numbers.length;
-}
+  describe('calculateAverage', () => {
+    it('should calculate the average of an array of numbers', () => {
+      const numbers = [1, 2, 3, 4, 5];
+      const average = calculateAverage(numbers);
+      expect(average).toBe(3);
+    });
+  });
 
-// Function to convert a string to uppercase
-function convertToUppercase(str) {
-  return str.toUpperCase();
-}
-
-// Export the helper functions
-module.exports = {
-  generateRandomId,
-  formatDate,
-  calculateAverage,
-  convertToUppercase,
-};
+  describe('convertToUppercase', () => {
+    it('should convert a string to uppercase', () => {
+      const str = 'hello world';
+      const uppercaseStr = convertToUppercase(str);
+      expect(uppercaseStr).toBe('HELLO WORLD');
+    });
+  });
+});
