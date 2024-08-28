@@ -1,39 +1,24 @@
-const express = require('express');
-const mongoose = require('mongoose');
+const expect = require('chai').expect;
+const app = require('../server');
 
-const app = express();
-
-// Initialize MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
-   useNewUrlParser: true,
-   useUnifiedTopology: true,
-})
-   .then(() => {
-      console.log('Connected to MongoDB');
-   })
-   .catch((error) => {
-      console.error('Failed to connect to MongoDB', error);
+describe('App', () => {
+   it('should connect to MongoDB successfully', () => {
+      // Test logic to check if the MongoDB connection is successful
    });
 
-// API Routes
-app.get('/api/users', (req, res) => {
-   // Logic to fetch users from the database
-});
+   it('should fetch users from the database', () => {
+      // Test logic to check if users are fetched from the database
+   });
 
-app.post('/api/users', (req, res) => {
-   // Logic to create a new user in the database
-});
+   it('should create a new user in the database', () => {
+      // Test logic to check if a new user is created in the database
+   });
 
-app.put('/api/users/:id', (req, res) => {
-   // Logic to update a user in the database
-});
+   it('should update a user in the database', () => {
+      // Test logic to check if a user is updated in the database
+   });
 
-app.delete('/api/users/:id', (req, res) => {
-   // Logic to delete a user from the database
-});
-
-// Start the server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-   console.log(`Server is running on port ${port}`);
+   it('should delete a user from the database', () => {
+      // Test logic to check if a user is deleted from the database
+   });
 });
