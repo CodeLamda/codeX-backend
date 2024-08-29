@@ -15,8 +15,14 @@ const limiter = RateLimit({
   max: 100, // max 100 requests per 15 minutes
 });
 
-// Apply rate limiter to all routes
-router.use(limiter);
+// Apply rate limiter to all routes except the authorization route
+router.use((req, res, next) => {
+  if (req.path !== '/auth') {
+    limiter(req, res, next);
+  } else {
+    next();
+  }
+});
 
 router.get('/', authMiddleware, paymentController.getPayments);
 router.post('/', authMiddleware, paymentController.createPayment);
